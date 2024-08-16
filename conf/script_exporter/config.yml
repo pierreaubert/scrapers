@@ -19,4 +19,5 @@ scripts:
     command: /home/pierre/scrapers/conf/script_exporter/speedtest.sh
     timeout:
       max_timeout: 120
-    cacheDuration: 18000
+      enforced: true
+    useExpiredCacheOnError: false

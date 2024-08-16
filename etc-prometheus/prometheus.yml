@@ -120,7 +120,7 @@ scrape_configs:
       - targets: ['192.168.1.32:9469']
 
   - job_name: 'speedtest'
-    scrape_interval: 6h
+    scrape_interval: 1h
     scrape_timeout:  120s
     metrics_path: '/probe'
     params:
