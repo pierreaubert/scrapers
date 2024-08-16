@@ -1,0 +1,14 @@
+[Unit]
+Description=Victoria vmagent
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=1
+User=_victoria_metrics
+Environment=
+ExecStart=cd /var/lib/victoria-metrics/vmagent && /usr/bin/vmagent -promscrape.config=/etc/prometheus/prometheus.yml -remoteWrite.url=http://192.168.1.32:8428/api/v1/write -promscrape.config.strictParse=false
+
+[Install]
+WantedBy=multi-user.target

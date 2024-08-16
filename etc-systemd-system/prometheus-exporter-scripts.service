@@ -1,0 +1,12 @@
+[Unit]
+Description=Scaper via scripts
+After=prometheus.target
+
+[Service]
+Type=idle
+Restart=on-failure
+User=pierre
+ExecStart=/home/pierre/scrapers/src/script_exporter/bin/script_exporter -config.file /home/pierre/scrapers/conf/script_exporter/config.yml
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Mikrotik router data scrapping
+After=prometheus.target
+
+[Service]
+Type=idle
+Restart=on-failure
+User=pierre
+ExecStart=/home/pierre/scrapers/src/mktxp/venv/bin/mktxp --cfg-dir /home/pierre/scrapers/conf/mktxp export
+
+[Install]
+WantedBy=multi-user.target

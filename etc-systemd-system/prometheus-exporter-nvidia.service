@@ -1,0 +1,12 @@
+[Unit]
+Description=NVIDIA GPU scrapping
+After=prometheus.target
+
+[Service]
+Type=idle
+Restart=on-failure
+User=root
+ExecStart=/home/pierre/src/nvidia_gpu_prometheus_exporter/nvidia_gpu_prometheus_exporter
+
+[Install]
+WantedBy=multi-user.target

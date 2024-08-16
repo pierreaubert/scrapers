@@ -1,0 +1,11 @@
+[Unit]
+Description=HP SSA Raid scraper
+After=prometheus.target
+
+[Service]
+Type=idle
+Restart=on-failure
+User=root
+ExecStart=/bin/bash -c '/home/pierre/src/Ssacli-Exporter/ssacli -Port 49100'
+[Install]
+WantedBy=multi-user.target
