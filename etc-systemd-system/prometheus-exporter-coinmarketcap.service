@@ -6,7 +6,7 @@ After=prometheus.target
 Type=idle
 Restart=on-failure
 User=pierre
-Environment=COINMARKETCAP_API_KEY="1ebae8da-36e2-4e13-8daf-cc59844c1894"
+Environment=COINMARKETCAP_API_KEY="foobar"
 ExecStart=/bin/bash -c 'cd /home/pierre/scrapers/src/coinmarketcap-exporter && source ./venv/bin/activate && python3 coinmarketcap.py'
 
 [Install]
