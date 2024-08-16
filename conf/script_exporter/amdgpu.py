@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import subprocess
-import pprint
+# import pprint
 
 def cleanup_value(value: str) -> str:
     split = value.split(' ')
