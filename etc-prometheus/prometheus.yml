@@ -120,7 +120,7 @@ scrape_configs:
       - targets: ['192.168.1.32:9469']
 
   - job_name: 'speedtest'
-    scrape_interval: 1h
+    scrape_interval: 6h
     scrape_timeout:  120s
     metrics_path: '/probe'
     params:
@@ -128,3 +128,30 @@ scrape_configs:
     static_configs:
       - targets: ['192.168.1.32:9469']
 
+  - job_name: blackbox_all
+    metrics_path: /probe
+    params:
+      module: [http_2xx]  # Look for a HTTP 200 response.
+    dns_sd_configs:
+      - names:
+          - https://www.spinorama.org
+          - https://spinorama.org
+          - https://dev.spinorama.org
+        type: A
+        port: 443
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+        replacement: https://$1/
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.1.32:9115
+      - source_labels: [__meta_dns_name]
+        target_label: __param_hostname
+      - source_labels: [__meta_dns_name]
+        target_label: vhost  # and store it in 'vhost' label
+
+  - job_name: 'blackbox_exporter'
+    static_configs:
+      - targets: ['0.0.0.0:9115']
